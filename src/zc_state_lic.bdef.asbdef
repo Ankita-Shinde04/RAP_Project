@@ -1,0 +1,11 @@
+projection;
+strict ( 2 );
+
+
+define behavior for ZC_STATE_LIC alias State_License
+{
+  use create;
+  use update;
+  use delete;
+
+}

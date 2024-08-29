@@ -1,0 +1,185 @@
+@Metadata.layer: #PARTNER
+
+@UI.headerInfo: {
+    typeName: 'Agency',
+    typeNamePlural: 'Agencies',
+    title: {
+        type: #STANDARD,
+        label: 'Agency Name',
+        value: 'AgencyName'
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Phone Number',
+        value: 'PhoneNumber'
+    }
+}
+
+@Search.searchable: true
+annotate entity ZDC_AGENCIES with
+{
+  @UI.facet: [
+      {
+          position: 10,
+          id: 'idGeneral',
+          label: 'General Information',
+          type: #COLLECTION,
+          purpose: #STANDARD,
+          targetQualifier: 'tqGeneral'
+      },
+        {
+            parentId: 'idGeneral',
+            label: 'Basic Information',
+            id: 'idBasic',
+            position: 10,
+            type: #FIELDGROUP_REFERENCE,
+            purpose: #STANDARD,
+            targetQualifier: 'tqBasic'
+        },
+        {
+            parentId: 'idGeneral',
+            label: 'Admin Information',
+            id: 'idAdmin',
+            position: 20,
+            type: #FIELDGROUP_REFERENCE,
+            purpose: #STANDARD,
+            targetQualifier: 'tqAdmin'
+        }
+  ]
+  @Search:{
+    defaultSearchElement: true,
+    fuzzinessThreshold: 0.7
+  }
+  @UI:{
+    lineItem: [
+        {   position: 10 },
+        {   type: #FOR_ACTION,
+            position: 10,
+            invocationGrouping: #CHANGE_SET,
+            dataAction: 'massUpload',
+            label: 'Mass Upload'},
+        {   type: #FOR_ACTION,
+            position: 20,
+            invocationGrouping: #CHANGE_SET,
+            dataAction: 'massDownload',
+            label: 'Mass Download'}
+    ],
+    fieldGroup: [{ position: 10, qualifier: 'tqBasic' }],
+    selectionField: [{ position: 10 }]
+  }
+  @EndUserText.label: 'Agency ID'
+  @EndUserText.quickInfo: 'Agency ID'
+  AgencyId;
+
+  @Search:{
+    defaultSearchElement: true,
+    fuzzinessThreshold: 0.7
+  }
+  @UI:{
+  lineItem: [{ position: 20 }],
+    fieldGroup: [{ position: 20, qualifier: 'tqBasic' }],
+  selectionField: [{ position: 20 }]
+  }
+  @EndUserText.label: 'Agency Name'
+  @EndUserText.quickInfo: 'Agency Name'
+  AgencyName;
+
+  @UI:{
+    lineItem: [{ position: 30 }],
+    fieldGroup: [{ position: 30, qualifier: 'tqBasic' }]
+  }
+  @EndUserText.label: 'Phone Number'
+  @EndUserText.quickInfo: 'Phone Number'
+  PhoneNumber;
+
+  @UI:{
+    lineItem: [{ position: 40 }],
+    fieldGroup: [{ position: 40, qualifier: 'tqBasic' }]
+  }
+  @EndUserText.label: 'Email Address'
+  @EndUserText.quickInfo: 'Email Address'
+  EmailAddress;
+
+  @UI:{
+     lineItem: [{ position: 50 }],
+    fieldGroup: [{ position: 50, qualifier: 'tqBasic' }]
+   }
+  @EndUserText.label: 'Street Address'
+  @EndUserText.quickInfo: 'Street Address'
+  Street;
+
+  @UI:{
+    lineItem: [{ position: 70 }],
+    fieldGroup: [{ position: 70, qualifier: 'tqBasic' }]
+  }
+  @Consumption.valueHelpDefinition: [
+    {
+        entity:{ name: 'ZDI_CITY_VH', element: 'CityId' },
+        additionalBinding: [{ localElement: 'State', element: 'StateId' }]
+    }
+  ]
+  @UI.textArrangement: #TEXT_ONLY
+  @EndUserText.label: 'City'
+  @EndUserText.quickInfo: 'City'
+  City;
+
+  @UI:{
+    lineItem: [{ position: 60 }],
+    fieldGroup: [{ position: 60, qualifier: 'tqBasic' }],
+    selectionField: [{ position: 30 }]
+  }
+  @Consumption.valueHelpDefinition: [{ entity:{ name: 'ZDI_STATE_VH', element: 'StateId' } }]
+  @UI.textArrangement: #TEXT_ONLY
+  @EndUserText.label: 'State'
+  @EndUserText.quickInfo: 'State'
+  State;
+
+  @UI:{
+     lineItem: [{ position: 80 }],
+    fieldGroup: [{ position: 80, qualifier: 'tqBasic' }]
+   }
+  @EndUserText.label: 'Zip Code'
+  @EndUserText.quickInfo: 'Zip Code'
+  ZipCode;
+
+  @UI:{
+    lineItem: [{ position: 90 }],
+    fieldGroup: [{ position: 10, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Created By'
+  @EndUserText.quickInfo: 'Created By'
+  LocalCreatedBy;
+
+  @UI:{
+    lineItem: [{ position: 100 }],
+    fieldGroup: [{ position: 20, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Created At'
+  @EndUserText.quickInfo: 'Created At'
+  LocalCreatedAt;
+
+  @UI:{
+    lineItem: [{ position: 110 }],
+    fieldGroup: [{ position: 30, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Changed By'
+  @EndUserText.quickInfo: 'Changed By'
+  LocalLastChangedBy;
+
+  @UI:{
+     lineItem: [{ position: 120 }],
+    fieldGroup: [{ position: 40, qualifier: 'tqAdmin' }]
+   }
+  @EndUserText.label: 'Changed At'
+  @EndUserText.quickInfo: 'Changed At'
+  LocalLastChangedAt;
+
+  @UI:{
+    lineItem: [{ position: 130 }],
+    fieldGroup: [{ position: 50, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Last Changed At(TimeStamp)'
+  @EndUserText.quickInfo: 'Last Changed At(TimeStamp)'
+  LastChangedAt;
+
+}

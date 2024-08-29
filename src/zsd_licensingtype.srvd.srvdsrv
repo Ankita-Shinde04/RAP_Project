@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Defination for Licensing Type'
+define service ZSD_LICENSINGTYPE {
+  expose ZDC_LIC_TYPE;
+}

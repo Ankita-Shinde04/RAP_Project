@@ -1,0 +1,134 @@
+@Metadata.layer: #PARTNER
+
+@UI.headerInfo: {
+    typeName: 'Licensing_Type',
+    typeNamePlural: 'Licensing_Types',
+    title: {
+        type: #STANDARD,
+        label: 'Licensing Type',
+        value: 'Licencetypename'
+    },
+    description: {
+        type: #STANDARD,
+        label:'Description',
+        value: 'Description'
+    }
+}
+
+
+annotate entity ZDC_LIC_TYPE with
+{
+  @UI.facet: [
+        {
+            position: 10,
+            id: 'idGeneral',
+            label: 'General Information',
+            type: #COLLECTION,
+            purpose: #STANDARD,
+            targetQualifier: 'tqGeneral'
+        },
+          {
+              parentId: 'idGeneral',
+              label: 'Basic Information',
+              id: 'idBasic',
+              position: 10,
+              type: #FIELDGROUP_REFERENCE,
+              purpose: #STANDARD,
+              targetQualifier: 'tqBasic'
+          },
+          {
+              parentId: 'idGeneral',
+              label: 'Admin Information',
+              id: 'idAdmin',
+              position: 20,
+              type: #FIELDGROUP_REFERENCE,
+              purpose: #STANDARD,
+              targetQualifier: 'tqAdmin'
+          }
+    ]
+
+
+
+  @UI:{
+  lineItem: [{ position: 20 }],
+   fieldGroup: [{ position: 20, qualifier: 'tqBasic' }],
+  selectionField: [{ position: 20 }]
+  }
+  @EndUserText.label: 'Licence Type Id'
+  @EndUserText.quickInfo: 'Licence Type Id'
+  Licencetypeid;
+
+  @UI:{
+  lineItem: [{ position: 30 }],
+    fieldGroup: [{ position: 30, qualifier: 'tqBasic' }],
+  selectionField: [{ position: 30 }]
+  }
+  @EndUserText.label: 'Licence Type Name'
+  @EndUserText.quickInfo: 'Licence Type Name'
+  Licencetypename;
+
+  @UI:{
+  lineItem: [{ position: 40 }],
+    fieldGroup: [{ position: 40, qualifier: 'tqBasic' }]
+  }
+  @EndUserText.label: 'Description'
+  @EndUserText.quickInfo: 'Description'
+  Description;
+
+  @UI:{
+  lineItem: [{ position: 50 }],
+    fieldGroup: [{ position: 50, qualifier: 'tqBasic' }]
+  }
+  @EndUserText.label: 'Validity Period'
+  @EndUserText.quickInfo: 'Validity Period'
+  Validityperiod;
+
+  @UI:{
+  lineItem: [{ position: 60 }],
+    fieldGroup: [{ position: 60, qualifier: 'tqBasic' }]
+  }
+  @EndUserText.label: 'Renewal Required'
+  @EndUserText.quickInfo: 'Renewal Required'
+  Renewalrequired;
+
+  @UI:{
+  lineItem: [{ position: 70 }],
+    fieldGroup: [{ position: 70, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Created By'
+  @EndUserText.quickInfo: 'Created By'
+  LocalCreatedBy;
+
+  @UI:{
+  lineItem: [{ position: 80 }],
+    fieldGroup: [{ position: 20, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Created At'
+  @EndUserText.quickInfo: 'Created At'
+  LocalCreatedAt;
+
+  @UI:{
+  lineItem: [{ position: 90 }],
+    fieldGroup: [{ position: 30, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Changed By'
+  @EndUserText.quickInfo: 'Changed By'
+  LocalLastChangedBy;
+
+  @UI:{
+  lineItem: [{ position: 100 }],
+    fieldGroup: [{ position: 40, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Changed At'
+  @EndUserText.quickInfo: 'Changed At'
+  LocalLastChangedAt;
+
+  @UI:{
+  lineItem: [{ position: 110 }],
+    fieldGroup: [{ position: 50, qualifier: 'tqAdmin' }]
+  }
+  @EndUserText.label: 'Last Changed At(TimeStamp)'
+  @EndUserText.quickInfo: 'Last Changed At(TimeStamp)'
+  LastChangedAt;
+
+}

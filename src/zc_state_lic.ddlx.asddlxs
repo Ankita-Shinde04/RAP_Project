@@ -1,0 +1,118 @@
+@Metadata.layer: #PARTNER
+//@UI.headerInfo: {
+//                 typeNamePlural: 'Total Number of StateLicense',
+//                 typeName: 'State License',
+//                 title: { value: 'Stateid', type: #STANDARD }
+//                 }
+//
+
+
+@UI.headerInfo: {
+    typeName: 'State_License',
+    typeNamePlural: 'State_License',
+    title: {
+        type: #STANDARD,
+        label: 'State License',
+        value: 'Stateid'
+    }
+//    description: {
+//        type: #STANDARD,
+//        label:'Licensetypeid',
+//        value: 'Licensetypeid'
+//    }
+}
+
+annotate entity ZC_STATE_LIC with
+{
+  ////  @UI.facet: [{  id :'State_License',
+  ////                   purpose: #STANDARD,
+  ////                   type: #IDENTIFICATION_REFERENCE,
+  ////                   label: 'StateLicense',
+  ////                   position: 10
+  ////                }]
+  ////
+
+
+
+
+
+  @UI.facet: [
+  {
+  position: 10,
+  id: 'idGeneral',
+  label: 'General Information',
+  type: #COLLECTION,
+  purpose: #STANDARD,
+  targetQualifier: 'tqGeneral'
+  },
+  {
+  parentId: 'idGeneral',
+  label: 'Basic Information',
+  id: 'idBasic',
+  position: 10,
+  type: #FIELDGROUP_REFERENCE,
+  purpose: #STANDARD,
+  targetQualifier: 'tqBasic'
+  },
+  {
+  parentId: 'idGeneral',
+  label: 'Admin Information',
+  id: 'idAdmin',
+  position: 20,
+  type: #FIELDGROUP_REFERENCE,
+  purpose: #STANDARD,
+  targetQualifier: 'tqAdmin'
+  }
+  ]
+
+
+  @UI: {lineItem: [{ position: 10 , label: 'State Id' }],
+     fieldGroup: [{ position: 10, qualifier: 'tqBasic' }] ,
+            identification: [{ position: 10 , label: 'State Id' }]}
+  @UI.selectionField: [{ position: 10 }]
+  @EndUserText.label: 'State Id'
+  @EndUserText.quickInfo: 'State Id'
+  Stateid;
+
+  @UI: {lineItem: [{ position: 20 , label: 'Licence type Id' }],
+        fieldGroup: [{ position: 20, qualifier: 'tqBasic' }],
+        identification: [{ position: 10 , label: 'Licence Type Id' }]}
+  @UI.selectionField: [{ position: 20 }]
+  @EndUserText.label: 'License Type Id'
+  @EndUserText.quickInfo: 'Licence Type Id'
+  Licensetypeid;
+
+  @UI: {lineItem: [{ position: 30 , label: 'Local Created By' }],
+        fieldGroup: [{ position: 10, qualifier: 'tqAdmin' }]}
+  @EndUserText.label: 'Local Created By'
+  @EndUserText.quickInfo: 'Local Created By'
+  LocalCreatedBy;
+
+  @UI: {lineItem: [{ position: 40 , label: 'Local Created At' }],
+        identification: [{ position: 40 , label: 'Local Created At' }],
+        fieldGroup: [{ position: 20, qualifier: 'tqAdmin' }]}
+  @EndUserText.label: 'Local Created At'
+  @EndUserText.quickInfo: 'Local Created At'
+  LocalCreatedAt;
+
+  @UI: {lineItem: [{ position: 50 , label: 'Local Last ChangedBy' }],
+        identification: [{ position: 50 , label: 'Local Last ChangedBy' }],
+        fieldGroup: [{ position: 30, qualifier: 'tqAdmin' }]}
+  @EndUserText.label: 'Local Last Changed By'
+  @EndUserText.quickInfo: 'Local Last Changed By'
+  LocalLastChangedBy;
+
+  @UI: {lineItem: [{ position: 60 , label: 'Local Last Changed At' }],
+        identification: [{ position: 60 , label: 'Local Last Changed At' }],
+        fieldGroup: [{ position: 40, qualifier: 'tqAdmin' }]}
+  @EndUserText.label: 'Local Last Changed At'
+  @EndUserText.quickInfo: 'Local Last Changed At'
+  LocalLastChangedAt;
+
+  @UI: {lineItem: [{ position: 70 , label: 'Last Changed At' }],
+        identification: [{ position: 70 , label: 'Last Changed At' }],
+        fieldGroup: [{ position: 50, qualifier: 'tqAdmin' }]}
+  @EndUserText.label: 'Last Changed At'
+  @EndUserText.quickInfo: 'Last Changed At'
+  LastChangedAt;
+}

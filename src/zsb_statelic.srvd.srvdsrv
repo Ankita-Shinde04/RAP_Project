@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Defination for State License'
+define service ZSB_STATELIC {
+  expose ZC_STATE_LIC;
+}

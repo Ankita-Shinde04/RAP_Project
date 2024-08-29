@@ -1,0 +1,35 @@
+managed implementation in class zbp_r_state_lic unique;
+strict ( 2 );
+
+
+define behavior for ZR_STATE_LIC alias State_License
+persistent table zdt_state_lic
+lock master
+authorization master ( instance )
+
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory ) Stateid, Licensetypeid;
+  field ( readonly ) LocalCreatedAt, LocalCreatedBy, LocalLastChangedAt, LocalLastChangedBy;
+
+
+
+
+  //validations
+  validation validateFields on save
+  { create; field Stateid; field Licensetypeid; }
+
+  mapping for zdt_state_lic
+    {
+      Stateid            = stateid;
+      Licensetypeid      = licensetypeid;
+      Localcreatedby     = local_created_by;
+      Localcreatedat     = local_created_at;
+      Locallastchangedby = local_last_changed_by;
+      Locallastchangedat = local_last_changed_at;
+      Lastchangedat      = last_changed_at;
+    }
+}

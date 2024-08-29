@@ -1,0 +1,59 @@
+managed implementation in class zbp_dr_agencies unique;
+strict ( 2 );
+with draft;
+define behavior for ZDR_AGENCIES alias Agency
+persistent table zdt_agency
+draft table zdt_agency_d
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+etag master LastChangedAt
+early numbering
+{
+
+  //Static Field Control
+  field ( mandatory ) AgencyName, PhoneNumber, EmailAddress, Street, City, State, ZipCode;
+  field ( readonly ) AgencyId, LocalCreatedAt, LocalCreatedBy, LocalLastChangedAt, LocalLastChangedBy, LastChangedAt;
+
+  //Standard Actions
+  create; //{ default function GetDefaultsForCreate; }
+  update;
+  delete;
+  //  static action validateExcel parameter ZAB_TEST result selective [1] $self;
+  //  static action validateExcel parameter ZAB_TEST result [1..*] $self;
+  //  changedocuments ( Acreate : data );
+  //  factory action ( authorization : instance ) asd
+  //Custom Actions
+  //  static action massUpload external 'massUpload' parameter zab_test result [1] $self;
+  //  static function massDownload external 'massDownload'   parameter zab_test result [1] $self;
+
+  //Standard Draft Actions
+  draft action Edit;
+  draft action Resume;
+  draft action Activate optimized;
+  draft action Discard;
+  draft determine action Prepare
+  {
+    validation validateFields;
+  }
+
+  //  Validations
+  validation validateFields on save { create; update; }
+  //Field Mapping for Agency Table
+  mapping for zdt_agency
+    {
+      AgencyId           = agency_id;
+      AgencyName         = name;
+      PhoneNumber        = phone_number;
+      EmailAddress       = email_address;
+      Street             = street;
+      City               = city;
+      State              = state;
+      ZipCode            = zip_code;
+      LocalCreatedBy     = Local_created_by;
+      LocalCreatedAt     = Local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}

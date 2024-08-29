@@ -1,0 +1,9 @@
+CLASS zbp_dr_agencies DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zdr_agencies.
+protected section.
+private section.
+ENDCLASS.
+
+
+
+CLASS ZBP_DR_AGENCIES IMPLEMENTATION.
+ENDCLASS.
